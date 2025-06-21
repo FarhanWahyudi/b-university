@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('nomor_telepon', 15);
             $table->string('jalur', 255);
             $table->text('image');
-            $table->string('porgram_study1', 255);
-            $table->string('porgram_study2', 255);
+            $table->string('program_study1', 255);
+            $table->string('program_study2', 255);
             $table->timestamps();
         });
     }
