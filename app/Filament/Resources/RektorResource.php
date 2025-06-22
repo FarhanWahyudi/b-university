@@ -6,9 +6,13 @@ use App\Filament\Resources\RektorResource\Pages;
 use App\Filament\Resources\RektorResource\RelationManagers;
 use App\Models\Rektor;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -23,13 +27,14 @@ class RektorResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('nama')
+                TextInput::make('nama')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('jabatan')
+                TextInput::make('jabatan')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Textarea::make('image')
+                FileUpload::make('image')
+                    ->image()
                     ->required()
                     ->columnSpanFull(),
             ]);
@@ -39,15 +44,16 @@ class RektorResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nama')
+                TextColumn::make('nama')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('jabatan')
+                TextColumn::make('jabatan')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
+                ImageColumn::make('image'),
+                TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

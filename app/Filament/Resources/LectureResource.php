@@ -6,9 +6,13 @@ use App\Filament\Resources\LectureResource\Pages;
 use App\Filament\Resources\LectureResource\RelationManagers;
 use App\Models\Lecture;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -23,26 +27,27 @@ class LectureResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('nama')
+                TextInput::make('nama')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('nidn')
+                TextInput::make('nidn')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('pendidikan')
+                TextInput::make('pendidikan')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('jabatan')
+                TextInput::make('jabatan')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('email')
+                TextInput::make('email')
                     ->email()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('topik')
+                TextInput::make('topik')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Textarea::make('image')
+                FileUpload::make('image')
+                    ->image()
                     ->required()
                     ->columnSpanFull(),
             ]);
@@ -52,23 +57,24 @@ class LectureResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nama')
+                TextColumn::make('nama')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('nidn')
+                TextColumn::make('nidn')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('pendidikan')
+                TextColumn::make('pendidikan')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('jabatan')
+                TextColumn::make('jabatan')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('email')
+                TextColumn::make('email')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('topik')
+                TextColumn::make('topik')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
+                ImageColumn::make('image'),
+                TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

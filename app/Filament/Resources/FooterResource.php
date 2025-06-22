@@ -6,9 +6,13 @@ use App\Filament\Resources\FooterResource\Pages;
 use App\Filament\Resources\FooterResource\RelationManagers;
 use App\Models\Footer;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -23,32 +27,32 @@ class FooterResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\FileUpload::make('image')
+                FileUpload::make('image')
                     ->image()
                     ->required(),
-                Forms\Components\TextInput::make('link_instagram')
+                TextInput::make('link_instagram')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('link_youtube')
+                TextInput::make('link_youtube')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('link_linkedin')
+                TextInput::make('link_linkedin')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('link_facebook')
+                TextInput::make('link_facebook')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('alamat')
+                TextInput::make('alamat')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('email')
+                TextInput::make('email')
                     ->email()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('wa')
+                TextInput::make('wa')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('link_gmaps')
+                TextInput::make('link_gmaps')
                     ->required()
                     ->maxLength(255),
             ]);
@@ -58,28 +62,28 @@ class FooterResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('image'),
-                Tables\Columns\TextColumn::make('link_instagram')
+                ImageColumn::make('image'),
+                TextColumn::make('link_instagram')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('link_youtube')
+                TextColumn::make('link_youtube')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('link_linkedin')
+                TextColumn::make('link_linkedin')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('link_facebook')
+                TextColumn::make('link_facebook')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('alamat')
+                TextColumn::make('alamat')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('email')
+                TextColumn::make('email')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('wa')
+                TextColumn::make('wa')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('link_gmaps')
+                TextColumn::make('link_gmaps')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
