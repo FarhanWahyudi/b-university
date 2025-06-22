@@ -6,9 +6,13 @@ use App\Filament\Resources\AboutmeResource\Pages;
 use App\Filament\Resources\AboutmeResource\RelationManagers;
 use App\Models\Aboutme;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -23,11 +27,15 @@ class AboutmeResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Textarea::make('content')
+                Textarea::make('content')
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\Textarea::make('image')
+                FileUpload::make('image')
+                    ->image()
+                    ->multiple()
                     ->required()
+                    ->minFiles(3)
+                    ->maxFiles(3)
                     ->columnSpanFull(),
             ]);
     }
@@ -36,11 +44,14 @@ class AboutmeResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('content')
+                    ->searchable(),
+                ImageColumn::make('image'),
+                TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

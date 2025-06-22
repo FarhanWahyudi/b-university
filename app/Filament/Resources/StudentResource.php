@@ -6,9 +6,13 @@ use App\Filament\Resources\StudentResource\Pages;
 use App\Filament\Resources\StudentResource\RelationManagers;
 use App\Models\Student;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -23,30 +27,31 @@ class StudentResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('nama_lengkap')
+                TextInput::make('nama_lengkap')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('nama_panggilan')
+                TextInput::make('nama_panggilan')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('email')
+                TextInput::make('email')
                     ->email()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('nomor_telepon')
+                TextInput::make('nomor_telepon')
                     ->tel()
                     ->required()
                     ->maxLength(15),
-                Forms\Components\TextInput::make('jalur')
+                TextInput::make('jalur')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Textarea::make('image')
+                FileUpload::make('image')
+                    ->image()
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\TextInput::make('program_study1')
+                TextInput::make('program_study1')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('program_study2')
+                TextInput::make('program_study2')
                     ->required()
                     ->maxLength(255),
             ]);
@@ -56,25 +61,26 @@ class StudentResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nama_lengkap')
+                TextColumn::make('nama_lengkap')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('nama_panggilan')
+                TextColumn::make('nama_panggilan')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('email')
+                TextColumn::make('email')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('nomor_telepon')
+                TextColumn::make('nomor_telepon')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('jalur')
+                TextColumn::make('jalur')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('program_study1')
+                ImageColumn::make('image'),
+                TextColumn::make('program_study1')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('program_study2')
+                TextColumn::make('program_study2')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
