@@ -2,13 +2,17 @@
 
 namespace App\Filament\Resources;
 
+use AmidEsfahani\FilamentTinyEditor\TinyEditor;
 use App\Filament\Resources\VisimisiResource\Pages;
 use App\Filament\Resources\VisimisiResource\RelationManagers;
 use App\Models\Visimisi;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -23,13 +27,17 @@ class VisimisiResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Textarea::make('visi')
+                TinyEditor::make('visi')
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\Textarea::make('misi')
+                TinyEditor::make('misi')
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\Textarea::make('image')
+                FileUpload::make('image')
+                    ->image()
+                    ->multiple()
+                    ->minFiles(3)
+                    ->maxFiles(3)
                     ->required()
                     ->columnSpanFull(),
             ]);
@@ -39,11 +47,20 @@ class VisimisiResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('visi')
+                    ->wrap()
+                    ->html()
+                    ->searchable(),
+                TextColumn::make('misi')
+                    ->wrap()
+                    ->html()
+                    ->searchable(),
+                ImageColumn::make('image'),
+                TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
