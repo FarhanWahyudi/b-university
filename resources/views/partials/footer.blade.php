@@ -1,7 +1,7 @@
 <footer class="w-full mt-14 pt-20">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 lg:gap-36 container">
         <div>
-            <img class="mb-10" src="{{ $dataFooter->image ? Storage::url($dataFooter->img) : asset('assets/images/B-Uni.png') }}" alt="Logo B-Universitas" />
+            <img class="mb-10" src="{{ $dataFooter->image ? Storage::url($dataFooter->image) : asset('assets/images/B-Uni.png') }}" alt="Logo B-Universitas" />
             <p class="text-medium text-xneutral-200 font-poppins text-sm mb-6">
                 Lihat Perkembangan kami diakun sosial media
             </p>
@@ -50,7 +50,7 @@
                 Contact us
             </h4>
             <div class="max-h-24">
-                <a href="{{ $datafooter->link_gmaps ?? 'null' }}" target="_blank" rel="noopener noreferrer">
+                <a href="{{ $dataFooter->link_gmaps ?? 'null' }}" target="_blank" rel="noopener noreferrer">
                     <button
                         class="px-6 py-[14px] text-center w-full font-montserrat text-neutral-0 bg-white border text-lg font-semibold border-primary-200 text-primary-200 rounded-full">
                         View GMaps

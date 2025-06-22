@@ -1,7 +1,7 @@
 <header class="w-full fixed top-0 bg-white z-50">
     <nav class="container flex justify-between py-5 items-center">
         <div>
-            <a href="{{ route('/') }}">
+            <a href="{{ route('landing-page') }}">
                 <img src="{{ asset('assets/images/B-Uni.png') }}" height="60" class="max-h-[60px]" alt="" />
             </a>
         </div>

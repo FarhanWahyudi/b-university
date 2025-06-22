@@ -17,7 +17,7 @@ class LandingpageController extends Controller
         $rektors = Rektor::all();
         $abouts = Aboutme::first();
         $announcements = Announcement::latest()->take(3)->get();
-        $news = News::latest()->get();
+        $news = News::latest()->take(3)->get();
 
         return response()->view('landing', [
             'cooperationImg' => $cooperationImg,
