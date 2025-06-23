@@ -1,6 +1,14 @@
 <?php
 
+use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\LandingpageController;
+use App\Http\Controllers\PendaftaranController;
+use App\Http\Controllers\PengumumanController;
+use App\Http\Controllers\SambutanController;
+use App\Http\Controllers\SdmController;
+use App\Http\Controllers\SejarahController;
+use App\Http\Controllers\VisimisiController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LandingpageController::class, 'index'])->name('landing-page');
