@@ -10,7 +10,7 @@ class VisimisiController extends Controller
 {
     public function index(): Response
     {
-        $visimisi = Visimisi::all();
+        $visimisi = Visimisi::first();
 
         if ($visimisi) {
             $visi = $visimisi->visi;

@@ -12,7 +12,7 @@ class BeritaController extends Controller
     {
         $news = News::where('slug', $slug)->firstOrFail();
 
-        return response()->view('berita', [
+        return response()->view('berita.show', [
             'news' => $news
         ]);
     }

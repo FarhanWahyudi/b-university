@@ -18,11 +18,11 @@ class PendaftaranController extends Controller
     {
         $request->validate([
             'nama_lengkap' => 'required|string|max:255',
-            'email' => 'required|email|unique:students.email',
+            'email' => 'required|email|unique:students,email',
             'jalur' => 'required|string',
             'image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
             'nama_panggilan' => 'required|string|max:255',
-            'nomor_hp' => 'required|string|max:15',
+            'nomor_telepon' => 'required|string|max:15',
             'program_study1' => 'required|string',
             'program_study2' => 'required|string',
         ]);
@@ -31,7 +31,7 @@ class PendaftaranController extends Controller
 
         if ($request->hasFile('image')) {
             $fotoName = time() . '_' . $request->file('image')->getClientOriginalName();
-            $path = $request->file('image')->storeAs('uploads/students', $fotoName, 'public');
+            $path = $request->file('image')->storeAs('', $fotoName, 'public');
 
             if (!$path) {
                 return back()->with('error', 'Gambar gagal disimpan');
@@ -44,7 +44,7 @@ class PendaftaranController extends Controller
             'jalur' => $request->jalur,
             'image' => $fotoName,
             'nama_panggilan' => $request->nama_panggilan,
-            'nomor_hp' => $request->nomor_hp,
+            'nomor_telepon' => $request->nomor_telepon,
             'program_study1' => $request->program_study1,
             'program_study2' => $request->program_study2,
         ]);

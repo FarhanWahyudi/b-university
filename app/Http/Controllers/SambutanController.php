@@ -10,10 +10,10 @@ class SambutanController extends Controller
 {
     public function index(): Response
     {
-        $greeting = Greeting::all();
+        $greetings = Greeting::all();
 
         return response()->view('sambutan', [
-            'greeting' => $greeting
+            'greetings' => $greetings
         ]);
     }
 }

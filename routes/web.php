@@ -22,5 +22,5 @@ Route::get('/pendaftaran', [PendaftaranController::class, 'index'])->name('penda
 
 Route::post('/pendaftaran', [PendaftaranController::class, 'store'])->name('pendaftaran-store');
 
-Route::get('/pengumuman/{slug}', [PengumumanController::class, 'show'])->name('pengumuman.show');
+Route::get('/pengumuman/{slug}', [PengumumanController::class, 'show'])->name('pengumuman-show');
 Route::get('/berita/{slug}', [BeritaController::class, 'show'])->name('berita.show');
